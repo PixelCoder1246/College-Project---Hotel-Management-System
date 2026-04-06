@@ -3,12 +3,10 @@ name: Full Stack Lint & Format Check
 on:
   push:
     branches:
-      - 'frontend-development'
-      - 'backend-development'
+      - 'main'
   pull_request:
     branches:
-      - 'frontend-development'
-      - 'backend-development'
+      - 'main'
 
 jobs:
   lint-frontend:
