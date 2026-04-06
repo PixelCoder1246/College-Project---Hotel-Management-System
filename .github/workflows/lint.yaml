@@ -1,0 +1,64 @@
+name: Full Stack Lint & Format Check
+
+on:
+  push:
+    branches:
+      - 'frontend-development'
+      - 'backend-development'
+  pull_request:
+    branches:
+      - 'frontend-development'
+      - 'backend-development'
+
+jobs:
+  lint-frontend:
+    name: Lint & Format Check (Frontend)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: 'frontend/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Run Lint
+        working-directory: ./frontend
+        run: npm run lint
+
+      - name: Check Formatting
+        working-directory: ./frontend
+        run: npm run check-format
+
+  lint-backend:
+    name: Lint & Format Check (Backend)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: 'backend/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ./backend
+        run: npm ci
+
+      - name: Run Lint
+        working-directory: ./backend
+        run: npm run lint
+
+      - name: Check Formatting
+        working-directory: ./backend
+        run: npm run check-format
