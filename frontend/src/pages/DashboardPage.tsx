@@ -68,7 +68,7 @@ export default function DashboardPage() {
 
   return (
     <div className="dashboard">
-      {/* ── Header ── */}
+
       <header className="dashboard-header">
         <div className="dashboard-header__brand">
           <span className="dashboard-header__icon">⚜</span>
@@ -101,9 +101,9 @@ export default function DashboardPage() {
         </div>
       </header>
 
-      {/* ── Main ── */}
+
       <main className="dashboard-main">
-        {/* Welcome banner */}
+
         <section className="welcome-banner" aria-labelledby="welcome-heading">
           <div className="welcome-banner__content">
             <div className="welcome-banner__icon" aria-hidden="true">
@@ -130,7 +130,7 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        {/* Account info cards */}
+
         <section className="info-grid" aria-label="Account information">
           <div className="info-card">
             <div className="info-card__icon" aria-hidden="true">
@@ -170,7 +170,7 @@ export default function DashboardPage() {
           </div>
         </section>
 
-        {/* Quick-access modules */}
+
         <section aria-labelledby="modules-heading">
           <h2 id="modules-heading" className="section-title">
             Quick Access

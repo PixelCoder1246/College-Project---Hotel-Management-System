@@ -1,4 +1,4 @@
-/* ── Nav ────────────────────────────────────────────────────────────────────── */
+
 .nav {
   position: fixed;
   top: 0;
@@ -58,13 +58,13 @@
   gap: 10px;
 }
 
-/* ── Landing wrapper ────────────────────────────────────────────────────────── */
+
 .landing {
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* ── Hero ───────────────────────────────────────────────────────────────────── */
+
 .hero {
   position: relative;
   min-height: 100vh;
@@ -191,7 +191,7 @@
   background: var(--border-strong);
 }
 
-/* ── Features ───────────────────────────────────────────────────────────────── */
+
 .features {
   padding: 100px 24px;
   background: linear-gradient(180deg, transparent, var(--bg-secondary) 20%, var(--bg-secondary) 80%, transparent);
@@ -270,7 +270,7 @@
   line-height: 1.65;
 }
 
-/* ── CTA Banner ─────────────────────────────────────────────────────────────── */
+
 .cta-banner {
   padding: 100px 24px;
   text-align: center;
@@ -304,7 +304,7 @@
   margin-bottom: 36px;
 }
 
-/* ── Footer ─────────────────────────────────────────────────────────────────── */
+
 .footer {
   background: var(--bg-secondary);
   border-top: 1px solid var(--border);
@@ -329,7 +329,7 @@
 }
 .footer__copy { font-size: 13px; color: var(--text-muted); }
 
-/* ── Responsive ─────────────────────────────────────────────────────────────── */
+
 @media (max-width: 600px) {
   .hero__stats { flex-direction: column; gap: 20px; }
   .stat__divider { width: 80px; height: 1px; }

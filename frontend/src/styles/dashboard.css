@@ -1,4 +1,4 @@
-/* ── Dashboard layout ──────────────────────────────────────────────────────── */
+
 .dashboard {
   min-height: 100vh;
   display: flex;
@@ -6,7 +6,7 @@
   background: var(--bg-primary);
 }
 
-/* ── Header ─────────────────────────────────────────────────────────────────── */
+
 .dashboard-header {
   position: sticky;
   top: 0;
@@ -76,7 +76,7 @@
   font-weight: 500;
 }
 
-/* ── Main content ────────────────────────────────────────────────────────────── */
+
 .dashboard-main {
   flex: 1;
   max-width: 1100px;
@@ -89,7 +89,7 @@
   animation: fadeInUp 0.5s ease both;
 }
 
-/* ── Welcome banner ──────────────────────────────────────────────────────────── */
+
 .welcome-banner {
   background: linear-gradient(135deg, rgba(201, 168, 76, 0.06), rgba(201, 168, 76, 0.02));
   border: 1px solid var(--accent-border);
@@ -136,7 +136,7 @@
   letter-spacing: 0.04em;
 }
 
-/* ── Info grid ───────────────────────────────────────────────────────────────── */
+
 .info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -194,7 +194,7 @@
   font-size: 14px;
 }
 
-/* ── Section title ───────────────────────────────────────────────────────────── */
+
 .section-title {
   font-size: 20px;
   font-weight: 700;
@@ -203,7 +203,7 @@
   margin-bottom: 16px;
 }
 
-/* ── Modules grid ────────────────────────────────────────────────────────────── */
+
 .modules-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

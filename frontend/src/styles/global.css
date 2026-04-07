@@ -187,6 +187,6 @@ img { max-width: 100%; display: block; }
   color: var(--text-muted);
 }
 
-/* ── Text utilities ─────────────────────────────────────────────────────────── */
+
 .text-accent { color: var(--accent); }
 .text-muted  { color: var(--text-muted); }

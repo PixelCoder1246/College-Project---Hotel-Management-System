@@ -46,7 +46,7 @@ export default function LandingPage() {
     <div className="landing">
       <Navbar />
 
-      {/* ── Hero ── */}
+
       <section className="hero" aria-labelledby="hero-heading">
         <div className="hero__bg">
           <div className="hero__orb hero__orb--1" />
@@ -54,7 +54,7 @@ export default function LandingPage() {
         </div>
 
         <div className="hero__content">
-          <div className="hero__badge">Premier Hospitality Experience</div>
+          <div className="hero__badge">Premium Hospitality Experience</div>
 
           <h1 id="hero-heading" className="hero__title">
             The Future of
@@ -103,7 +103,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── Features ── */}
+
       <section
         className="features"
         id="features"
@@ -133,7 +133,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── CTA Banner ── */}
+
       <section className="cta-banner" aria-labelledby="cta-heading">
         <div className="cta-banner__content">
           <h2 id="cta-heading" className="cta-banner__title">
@@ -152,7 +152,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── Footer ── */}
+
       <footer className="footer" role="contentinfo">
         <div className="footer__content">
           <div className="footer__logo">⚜ Hotel MS</div>

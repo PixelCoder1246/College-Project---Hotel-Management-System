@@ -1,4 +1,4 @@
-/* ── Auth page wrapper ──────────────────────────────────────────────────────── */
+
 .auth-page {
   min-height: 100vh;
   display: flex;
@@ -36,7 +36,7 @@
   background: radial-gradient(circle, rgba(59, 130, 246, 0.4), transparent 70%);
 }
 
-/* ── Container ──────────────────────────────────────────────────────────────── */
+
 .auth-container {
   position: relative;
   z-index: 1;
@@ -49,7 +49,7 @@
   animation: fadeInUp 0.6s ease both;
 }
 
-/* ── Brand ──────────────────────────────────────────────────────────────────── */
+
 .auth-brand {
   display: flex;
   align-items: center;
@@ -63,7 +63,7 @@
 .auth-brand:hover { color: var(--accent); }
 .auth-brand__icon { font-size: 26px; color: var(--accent); }
 
-/* ── Card ───────────────────────────────────────────────────────────────────── */
+
 .auth-card {
   width: 100%;
   background: rgba(17, 28, 48, 0.85);
@@ -75,7 +75,7 @@
   box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255,255,255,0.04) inset;
 }
 
-/* ── Stage indicator ─────────────────────────────────────────────────────────── */
+
 .auth-stages {
   display: flex;
   align-items: center;
@@ -131,7 +131,7 @@
   margin: 0 8px;
 }
 
-/* ── Card header ────────────────────────────────────────────────────────────── */
+
 .auth-card__header {
   text-align: center;
   margin-bottom: 28px;
@@ -156,7 +156,7 @@
   margin-bottom: 12px;
 }
 
-/* ── Form ───────────────────────────────────────────────────────────────────── */
+
 .auth-form {
   display: flex;
   flex-direction: column;
@@ -213,7 +213,7 @@
 }
 .form-select option { background: #111c30; color: var(--text-primary); }
 
-/* ── Input with password toggle ─────────────────────────────────────────────── */
+
 .input-wrapper {
   position: relative;
 }
@@ -236,7 +236,7 @@
 }
 .input-toggle:hover { opacity: 1; }
 
-/* ── Password strength ──────────────────────────────────────────────────────── */
+
 .password-strength {
   display: flex;
   align-items: center;
@@ -263,7 +263,7 @@
   text-align: right;
 }
 
-/* ── Checkbox ───────────────────────────────────────────────────────────────── */
+
 .checkbox-label {
   display: flex;
   align-items: center;
@@ -299,7 +299,7 @@
   color: var(--text-secondary);
 }
 
-/* ── Card footer ────────────────────────────────────────────────────────────── */
+
 .auth-card__footer {
   text-align: center;
   margin-top: 24px;

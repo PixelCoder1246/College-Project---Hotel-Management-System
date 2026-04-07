@@ -32,7 +32,7 @@ export default function LoginPage() {
       const res = await loginUser({ email, password, trustedToken });
 
       if (!res.data.requiresOtp && res.data.token && res.data.user) {
-        // Trusted device — skip OTP
+
         login(res.data.token, res.data.user, res.data.trustedToken);
         toast.success(`Welcome back, ${res.data.user.name}!`);
         navigate('/dashboard');
@@ -90,7 +90,7 @@ export default function LoginPage() {
         </Link>
 
         <div className="auth-card">
-          {/* Stage indicator */}
+
           <div
             className="auth-stages"
             role="progressbar"
