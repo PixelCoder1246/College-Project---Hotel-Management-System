@@ -93,11 +93,23 @@ classDiagram
         +GET /me
     }
 
+    class UserRoutes {
+        +GET /profile
+        +PATCH /profile
+        +GET /bookings
+    }
+
     class AuthController {
         +register(req, res)
         +login(req, res)
         +verifyOtp(req, res)
         +getMe(req, res)
+    }
+
+    class UserController {
+        +getProfile(req, res)
+        +updateProfile(req, res)
+        +getBookingHistory(req, res)
     }
 
     class AuthService {
@@ -107,15 +119,26 @@ classDiagram
         +verifyOTP(userId, code)
     }
 
+    class UserService {
+        +getProfile(userId)
+        +updateProfile(userId, data)
+        +getBookingHistory(userId)
+    }
+
     class PrismaClient {
         +user
+        +booking
         +$connect()
     }
 
     App --> AuthRoutes
+    App --> UserRoutes
     AuthRoutes --> AuthController
+    UserRoutes --> UserController
     AuthController --> AuthService
+    UserController --> UserService
     AuthService --> PrismaClient
+    UserService --> PrismaClient
 ```
 
 ---
@@ -135,7 +158,8 @@ useCaseDiagram
         usecase "Payments" as UC2
         usecase "Manage Staff" as UC3
         usecase "View Analytics" as UC4
-        usecase "Self Profile Management" as UC5
+        usecase "Personal Profile Management" as UC5
+        usecase "View Booking History" as UC6
     }
 
     admin --> UC1
@@ -143,15 +167,18 @@ useCaseDiagram
     admin --> UC3
     admin --> UC4
     admin --> UC5
+    admin --> UC6
 
     staff --> UC1
     staff --> UC2
     staff --> UC4
     staff --> UC5
+    staff --> UC6
 
     customer --> UC1
     customer --> UC2
     customer --> UC5
+    customer --> UC6
 ```
 
 ---

@@ -114,6 +114,94 @@ Fetches the profile of the currently authenticated user.
 
 ---
 
+## 👤 User Endpoints
+
+All account and profile-related endpoints are prefixed with `/user`. All require **Authentication**.
+
+### 1. Get Profile
+Fetches detailed profile information for the authenticated user.
+
+- **URL**: `/user/profile`
+- **Method**: `GET`
+- **Auth Required**: Yes
+- **Success Response**:
+  - **Code**: `200 OK`
+  - **Content**:
+    ```json
+    {
+      "status": "success",
+      "data": {
+        "user": {
+          "id": "...",
+          "name": "...",
+          "email": "...",
+          "role": "...",
+          "phone": "...",
+          "address": "...",
+          "bio": "...",
+          "profilePic": "..."
+        }
+      },
+      "message": "Profile fetched successfully"
+    }
+    ```
+
+### 2. Update Profile
+Updates the profile information for the authenticated user.
+
+- **URL**: `/user/profile`
+- **Method**: `PATCH`
+- **Auth Required**: Yes
+- **Request Body**:
+  ```json
+  {
+    "name": "John Doe",
+    "phone": "+1234567890",
+    "address": "123 Hotel St",
+    "bio": "Loves traveling",
+    "profilePic": "https://example.com/pic.jpg"
+  }
+  ```
+- **Success Response**:
+  - **Code**: `200 OK`
+  - **Content**:
+    ```json
+    {
+      "status": "success",
+      "data": { "user": { ... } },
+      "message": "Profile updated successfully"
+    }
+    ```
+
+### 3. Get Booking History
+Fetches the list of bookings made by the authenticated user.
+
+- **URL**: `/user/bookings`
+- **Method**: `GET`
+- **Auth Required**: Yes
+- **Success Response**:
+  - **Code**: `200 OK`
+  - **Content**:
+    ```json
+    {
+      "status": "success",
+      "data": {
+        "bookings": [
+          {
+            "id": "...",
+            "checkIn": "...",
+            "checkOut": "...",
+            "totalPrice": 250.0,
+            "status": "CONFIRMED"
+          }
+        ]
+      },
+      "message": "Booking history fetched successfully"
+    }
+    ```
+
+---
+
 ## ⚠️ Error Responses
 
 Typical error responses follow this format:

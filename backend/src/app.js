@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 
 const authRoutes = require('./modules/auth/auth.routes');
+const userRoutes = require('./modules/user/user.routes');
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.get('/', (_req, res) => {
 });
 
 app.use('/api/auth', authLimiter, authRoutes);
+app.use('/api/user', userRoutes);
 
 app.use((req, res) => {
   res.status(404).json({

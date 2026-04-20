@@ -16,15 +16,39 @@ model User {
   email         String    @unique
   password      String
   role          Role      @default(CUSTOMER)
+  phone         String?
+  address       String?
+  bio           String?
+  profilePic    String?
   otpCode       String?
   otpExpiry     DateTime?
   trustedTokens String[]
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  bookings      Booking[]
+}
+
+model Booking {
+  id         String        @id @default(uuid())
+  checkIn    DateTime
+  checkOut   DateTime
+  totalPrice Float
+  status     BookingStatus @default(PENDING)
+  userId     String
+  user       User          @relation(fields: [userId], references: [id])
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
 }
 
 enum Role {
   CUSTOMER
   ADMIN
   STAFF
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
 }
