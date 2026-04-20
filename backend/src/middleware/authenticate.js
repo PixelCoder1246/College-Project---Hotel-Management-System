@@ -3,13 +3,25 @@ const { error } = require('../utils/response.util');
 const prisma = require('../config/db');
 
 const authenticate = async (req, res, next) => {
-  const authHeader = req.headers.authorization;
+  let token;
 
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return error(res, 'No token provided. Please log in.', 401);
+  if (req.headers.authorization) {
+    if (req.headers.authorization.startsWith('Bearer ')) {
+      token = req.headers.authorization.split(' ')[1];
+    } else {
+      token = req.headers.authorization;
+    }
+  }
+  else if (req.headers['x-auth-token']) {
+    token = req.headers['x-auth-token'];
+  }
+  else if (req.query.token) {
+    token = req.query.token;
   }
 
-  const token = authHeader.split(' ')[1];
+  if (!token) {
+    return error(res, 'No token provided. Please log in.', 401);
+  }
 
   try {
     const decoded = verifyToken(token);
@@ -25,7 +37,8 @@ const authenticate = async (req, res, next) => {
 
     req.user = user;
     next();
-  } catch {
+  } catch (err) {
+    console.error('Authentication Error:', err.message);
     return error(res, 'Invalid or expired token. Please log in again.', 401);
   }
 };

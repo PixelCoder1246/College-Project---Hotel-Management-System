@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] - 2026-04-20
+### Added
+- **Project Documentation Suite**:
+  - Created a dedicated `docs/` directory.
+  - Added `architecture.md` with Mermaid diagrams (Sequence, Class, Use-Case).
+  - Added `api-endpoints.md` with request/response specifications.
+  - Added `database-schema.md` with Prisma models and ER diagram.
+  - Added `setup-guide.md` for local development and environment configuration.
+  - Added `contributing.md` for project collaboration standards.
+  - Added `user-guide.md` for role-based dashboard instructions.
+- **Reference Improvements**:
+  - Linked all documentation in the root `README.md`.
+
+### Changed
+- Global version bump across all project files (`package.json`, `app.js`, `docs`).
+- Updated project metadata to reflect the new documentation milestone.
+
 ## [0.1.1] - 2026-04-07
 ### Added
 - **Full-Stack Authentication System**:

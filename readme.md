@@ -1,8 +1,8 @@
-# Hotel Management System (v0.1.1)
+# Hotel Management System (v0.1.2)
 
 A modern, full-stack hospitality management platform built for speed, security, and premium user experience.
 
-## 🚀 Version 0.1.1 - Authentication Update
+## 🚀 Version 0.1.2 - Documentation Suite Update
 
 The project has reached a major milestone with a production-ready authentication system and a high-end UI design system.
 
@@ -27,6 +27,18 @@ The project has reached a major milestone with a production-ready authentication
 - **`/backend`**: Express API, Prisma Schema, Auth Middleware, Email Service.
 - **`/frontend`**: React Pages (Landing, Login, Register, Dashboard), Context API, Styled Components.
 - **`/utils`**: Shared helper functions.
+- **`/docs`**: Project documentation (Architecture, API, Database, etc.).
+
+## 📚 Documentation
+
+Detailed technical documentation is available in the [`/docs`](./docs) folder:
+
+- 🏛️ **[Architecture Overview](./docs/architecture.md)**: System design, tech stack, and UML diagrams.
+- 🔌 **[API Endpoints](./docs/api-endpoints.md)**: REST API documentation and payloads.
+- 🗄️ **[Database Schema](./docs/database-schema.md)**: Prisma models and ER diagrams.
+- 🚀 **[Setup Guide](./docs/setup-guide.md)**: Full installation and environment setup.
+- 🌿 **[Contributing Guide](./docs/contributing.md)**: Standards, branching, and workflow.
+- 📖 **[User Guide](./docs/user-guide.md)**: Role-based dashboard instructions.
 
 ## 🛠️ Getting Started
 

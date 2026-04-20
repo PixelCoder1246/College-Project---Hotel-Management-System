@@ -16,7 +16,7 @@ app.use(
 
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 20,
+  max: 100,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
@@ -33,7 +33,7 @@ app.get('/', (_req, res) => {
   res.status(200).json({
     status: 'success',
     message: 'Hotel Management System API',
-    version: '0.1.0',
+    version: '0.1.2',
   });
 });
 
