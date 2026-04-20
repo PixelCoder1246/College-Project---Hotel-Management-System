@@ -1,6 +1,20 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [0.1.3] - 2026-04-20
+### Added
+- **Phase 1 UI Implementation**:
+  - `ProfilePage.tsx`: Premium design with edit profile capabilities.
+  - Interactive profile fields correctly mapping `User` model (`phone`, `address`, `bio`, `profilePic`).
+  - Booking History UI integrated and structured.
+  - `user.service.ts` connecting frontend profile features to backend.
+- **Backend Sync**:
+  - CORS configurations updated to allow multiple frontend development ports seamlessly (`localhost:5173`, `localhost:5174`).
+  - Strict empty-value filtering built into the frontend to cleanly interface with `express-validator`.
+
+### Changed
+- Refactored `auth.types.ts` and `user.types.ts` imports for strict typing (`import type`) to prevent Vite hot-reload module syntactical crashes. 
+- Bumped frontend and backend application versions to `0.1.3`.
 
 ## [0.1.2] - 2026-04-20
 ### Added

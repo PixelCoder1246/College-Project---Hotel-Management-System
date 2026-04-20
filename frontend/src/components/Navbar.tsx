@@ -25,13 +25,22 @@ export default function Navbar() {
 
         <div className="nav__actions">
           {isAuthenticated ? (
-            <Link
-              to="/dashboard"
-              className="btn btn--primary btn--sm"
-              id="nav-dashboard"
-            >
-              Dashboard
-            </Link>
+            <>
+              <Link
+                to="/dashboard"
+                className="nav__link"
+                id="nav-dashboard"
+              >
+                Dashboard
+              </Link>
+              <Link
+                to="/profile"
+                className="btn btn--primary btn--sm"
+                id="nav-profile"
+              >
+                Profile
+              </Link>
+            </>
           ) : (
             <>
               <Link

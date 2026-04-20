@@ -10,7 +10,11 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: [
+      process.env.CLIENT_URL,
+      'http://localhost:5173',
+      'http://localhost:5174',
+    ].filter(Boolean),
     credentials: true,
   })
 );
@@ -34,7 +38,7 @@ app.get('/', (_req, res) => {
   res.status(200).json({
     status: 'success',
     message: 'Hotel Management System API',
-    version: '0.1.2',
+    version: '0.1.3',
   });
 });
 
