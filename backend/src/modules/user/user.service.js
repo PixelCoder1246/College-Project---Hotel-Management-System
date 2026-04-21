@@ -1,8 +1,5 @@
 const prisma = require('../../config/db');
 
-/**
- * Get user profile by ID
- */
 const getProfile = async (userId) => {
   return await prisma.user.findUnique({
     where: { id: userId },
@@ -20,9 +17,6 @@ const getProfile = async (userId) => {
   });
 };
 
-/**
- * Update user profile
- */
 const updateProfile = async (userId, data) => {
   return await prisma.user.update({
     where: { id: userId },
@@ -39,10 +33,6 @@ const updateProfile = async (userId, data) => {
     },
   });
 };
-
-/**
- * Get booking history for a user
- */
 const getBookingHistory = async (userId) => {
   return await prisma.booking.findMany({
     where: { userId },

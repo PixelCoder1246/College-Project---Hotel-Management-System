@@ -1,5 +1,4 @@
-import React from 'react';
-import { Room } from '../types/room.types';
+import type { Room } from '../types/room.types';
 
 interface RoomTableProps {
   rooms: Room[];

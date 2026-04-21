@@ -26,10 +26,28 @@ const ROLE_CONFIG = {
 
 const MODULES = [
   {
-    icon: '🛏️',
+    icon: '🏨',
     title: 'Room Booking',
-    desc: 'Manage reservations and room availability',
+    desc: 'Browse and book available rooms',
     roles: ['ADMIN', 'STAFF', 'CUSTOMER'],
+  },
+  {
+    icon: '📅',
+    title: 'My Bookings',
+    desc: 'View and manage your reservations',
+    roles: ['ADMIN', 'STAFF', 'CUSTOMER'],
+  },
+  {
+    icon: '🛏️',
+    title: 'Manage Rooms',
+    desc: 'Add, edit, or remove hotel rooms',
+    roles: ['ADMIN', 'STAFF'],
+  },
+  {
+    icon: '📝',
+    title: 'Manage Bookings',
+    desc: 'Confirm or cancel guest reservations',
+    roles: ['ADMIN', 'STAFF'],
   },
   {
     icon: '💳',
@@ -177,19 +195,18 @@ export default function DashboardPage() {
                 key={mod.title}
                 className="module-card"
                 onClick={() => {
-                  if (
-                    mod.title === 'Room Booking' &&
-                    (user.role === 'ADMIN' || user.role === 'STAFF')
-                  ) {
+                  if (mod.title === 'Room Booking') {
+                    navigate('/rooms');
+                  } else if (mod.title === 'My Bookings') {
+                    navigate('/my-bookings');
+                  } else if (mod.title === 'Manage Rooms') {
                     navigate('/dashboard/rooms');
+                  } else if (mod.title === 'Manage Bookings') {
+                    navigate('/dashboard/bookings');
                   }
                 }}
                 style={{
-                  cursor:
-                    mod.title === 'Room Booking' &&
-                    (user.role === 'ADMIN' || user.role === 'STAFF')
-                      ? 'pointer'
-                      : 'default',
+                  cursor: 'pointer',
                 }}
               >
                 <div className="module-card__icon" aria-hidden="true">

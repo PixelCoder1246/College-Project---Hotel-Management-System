@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import toast from 'react-hot-toast';
 import { getAllRooms, deleteRoom } from '../services/room.service';
-import { Room, RoomFilters, RoomType, RoomStatus } from '../types/room.types';
+import type { Room, RoomFilters, RoomType, RoomStatus } from '../types/room.types';
 import RoomForm from '../components/RoomForm';
 import RoomTable from '../components/RoomTable';
 import '../styles/rooms.css';

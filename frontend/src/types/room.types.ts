@@ -1,4 +1,4 @@
-import { ApiResponse } from './auth.types';
+import type { ApiResponse } from './auth.types';
 
 export type RoomStatus = 'AVAILABLE' | 'BOOKED' | 'MAINTENANCE';
 export type RoomType = 'SINGLE' | 'DOUBLE' | 'DELUXE' | 'SUITE';

@@ -4,7 +4,8 @@ const {
   createBooking,
   updateBooking,
   cancelBooking,
-  getBookingById
+  getBookingById,
+  getAllBookings
 } = require('./booking.controller');
 const {
   createBookingValidator,
@@ -18,6 +19,7 @@ const router = express.Router();
 
 router.use(authenticate);
 
+router.get('/', authorize('ADMIN', 'STAFF'), getAllBookings);
 router.get('/check-availability', checkAvailabilityValidator, checkAvailability);
 router.post('/', createBookingValidator, createBooking);
 router.get('/:id', getBookingById);

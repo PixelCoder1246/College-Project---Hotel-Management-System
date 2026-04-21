@@ -70,10 +70,20 @@ const getBookingById = async (req, res) => {
   }
 };
 
+const getAllBookings = async (req, res) => {
+  try {
+    const bookings = await bookingService.getAllBookings(req.query);
+    return success(res, { bookings }, 200, 'Bookings fetched successfully');
+  } catch (err) {
+    return error(res, err.message, 500);
+  }
+};
+
 module.exports = {
   checkAvailability,
   createBooking,
   updateBooking,
   cancelBooking,
-  getBookingById
+  getBookingById,
+  getAllBookings
 };
