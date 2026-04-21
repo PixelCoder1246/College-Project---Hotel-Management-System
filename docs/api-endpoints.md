@@ -1,6 +1,6 @@
 # API Endpoints Documentation
 
-This document lists all available REST API endpoints for the Hotel Management System (v2.0.0).
+This document lists all available REST API endpoints for the Hotel Management System (v3.0.0).
 
 ## 🌍 Base URL
 `http://localhost:3000/api`
@@ -318,6 +318,120 @@ Removes a room from the system.
       "message": "Room deleted successfully"
     }
     ```
+
+---
+
+## 📅 Booking Endpoints
+
+All booking-related endpoints are prefixed with `/bookings`. All endpoints require **Authentication**.
+
+### 1. Check Availability
+Checks if a specific room is available for a given date range.
+
+- **URL**: `/bookings/check-availability`
+- **Method**: `GET`
+- **Auth Required**: Yes
+- **Query Parameters**:
+  - `roomId`: UUID of the room.
+  - `checkIn`: Check-in date (ISO8601).
+  - `checkOut`: Check-out date (ISO8601).
+- **Success Response**:
+  - **Code**: `200 OK`
+  - **Content**:
+    ```json
+    {
+      "status": "success",
+      "data": { "isAvailable": true },
+      "message": "Room is available"
+    }
+    ```
+
+### 2. Create Booking
+Creates a new reservation for the authenticated user.
+
+- **URL**: `/bookings`
+- **Method**: `POST`
+- **Auth Required**: Yes
+- **Request Body**:
+  ```json
+  {
+    "roomId": "...",
+    "checkIn": "2026-05-01",
+    "checkOut": "2026-05-05"
+  }
+  ```
+- **Success Response**:
+  - **Code**: `201 Created`
+  - **Content**:
+    ```json
+    {
+      "status": "success",
+      "data": { "booking": { ... } },
+      "message": "Booking created successfully"
+    }
+    ```
+
+### 3. Get Booking Details
+Fetches details of a specific booking.
+
+- **URL**: `/bookings/:id`
+- **Method**: `GET`
+- **Auth Required**: Yes
+- **Success Response**:
+  - **Code**: `200 OK`
+  - **Content**:
+    ```json
+    {
+      "status": "success",
+      "data": { "booking": { ... } },
+      "message": "Booking fetched successfully"
+    }
+    ```
+
+### 4. Update Booking
+Modifies an existing booking. Re-validates availability if dates are changed.
+
+- **URL**: `/bookings/:id`
+- **Method**: `PATCH`
+- **Auth Required**: Yes
+- **Request Body**: (Optional fields)
+  ```json
+  {
+    "checkIn": "...",
+    "checkOut": "...",
+    "roomId": "...",
+    "status": "CONFIRMED"
+  }
+  ```
+- **Success Response**:
+  - **Code**: `200 OK`
+  - **Content**:
+    ```json
+    {
+      "status": "success",
+      "data": { "booking": { ... } },
+      "message": "Booking updated successfully"
+    }
+    ```
+
+### 5. Cancel Booking
+Cancels an existing reservation.
+
+- **URL**: `/bookings/:id`
+- **Method**: `DELETE`
+- **Auth Required**: Yes
+- **Success Response**:
+  - **Code**: `200 OK`
+  - **Content**:
+    ```json
+    {
+      "status": "success",
+      "data": null,
+      "message": "Booking cancelled successfully"
+    }
+    ```
+
+---
 
 ---
 
