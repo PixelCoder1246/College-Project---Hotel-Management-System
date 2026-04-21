@@ -1,6 +1,6 @@
 # System Architecture
 
-This document describes the high-level architecture and design of the Hotel Management System (v0.1.2).
+This document describes the high-level architecture and design of the Hotel Management System (v0.1.3).
 
 ## 🏗️ Overview
 

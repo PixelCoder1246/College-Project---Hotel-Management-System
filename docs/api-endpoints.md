@@ -1,6 +1,6 @@
 # API Endpoints Documentation
 
-This document lists all available REST API endpoints for the Hotel Management System (v0.1.2).
+This document lists all available REST API endpoints for the Hotel Management System (v0.1.3).
 
 ## 🌍 Base URL
 `http://localhost:3000/api`

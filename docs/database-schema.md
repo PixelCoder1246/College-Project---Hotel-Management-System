@@ -1,6 +1,6 @@
 # Database Schema Documentation
 
-This document describes the database schema used by the Hotel Management System (v0.1.2).
+This document describes the database schema used by the Hotel Management System (v0.1.3).
 
 ## 🗄️ Database Provider
 - **Type**: PostgreSQL (via Supabase)
