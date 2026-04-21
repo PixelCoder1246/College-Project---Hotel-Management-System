@@ -26,11 +26,7 @@ export default function Navbar() {
         <div className="nav__actions">
           {isAuthenticated ? (
             <>
-              <Link
-                to="/dashboard"
-                className="nav__link"
-                id="nav-dashboard"
-              >
+              <Link to="/dashboard" className="nav__link" id="nav-dashboard">
                 Dashboard
               </Link>
               <Link

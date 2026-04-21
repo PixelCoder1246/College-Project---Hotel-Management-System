@@ -11,11 +11,9 @@ const authenticate = async (req, res, next) => {
     } else {
       token = req.headers.authorization;
     }
-  }
-  else if (req.headers['x-auth-token']) {
+  } else if (req.headers['x-auth-token']) {
     token = req.headers['x-auth-token'];
-  }
-  else if (req.query.token) {
+  } else if (req.query.token) {
     token = req.query.token;
   }
 

@@ -68,7 +68,6 @@ export default function DashboardPage() {
 
   return (
     <div className="dashboard">
-
       <header className="dashboard-header">
         <div className="dashboard-header__brand">
           <span className="dashboard-header__icon">⚜</span>
@@ -101,9 +100,7 @@ export default function DashboardPage() {
         </div>
       </header>
 
-
       <main className="dashboard-main">
-
         <section className="welcome-banner" aria-labelledby="welcome-heading">
           <div className="welcome-banner__content">
             <div className="welcome-banner__icon" aria-hidden="true">
@@ -129,7 +126,6 @@ export default function DashboardPage() {
             <span style={{ color: roleConfig.color }}>{roleConfig.label}</span>
           </div>
         </section>
-
 
         <section className="info-grid" aria-label="Account information">
           <div className="info-card">
@@ -170,7 +166,6 @@ export default function DashboardPage() {
           </div>
         </section>
 
-
         <section aria-labelledby="modules-heading">
           <h2 id="modules-heading" className="section-title">
             Quick Access
@@ -181,6 +176,21 @@ export default function DashboardPage() {
               <div
                 key={mod.title}
                 className="module-card"
+                onClick={() => {
+                  if (
+                    mod.title === 'Room Booking' &&
+                    (user.role === 'ADMIN' || user.role === 'STAFF')
+                  ) {
+                    navigate('/dashboard/rooms');
+                  }
+                }}
+                style={{
+                  cursor:
+                    mod.title === 'Room Booking' &&
+                    (user.role === 'ADMIN' || user.role === 'STAFF')
+                      ? 'pointer'
+                      : 'default',
+                }}
               >
                 <div className="module-card__icon" aria-hidden="true">
                   {mod.icon}

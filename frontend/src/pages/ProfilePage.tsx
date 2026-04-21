@@ -3,7 +3,11 @@ import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
 import LoadingSpinner from '../components/LoadingSpinner';
 import toast from 'react-hot-toast';
-import { getProfile, updateProfile, getBookingHistory } from '../services/user.service';
+import {
+  getProfile,
+  updateProfile,
+  getBookingHistory,
+} from '../services/user.service';
 import type { Booking } from '../types/user.types';
 import '../styles/profile.css';
 
@@ -27,9 +31,9 @@ export default function ProfilePage() {
       try {
         const [profileRes, bookingsRes] = await Promise.all([
           getProfile(),
-          getBookingHistory()
+          getBookingHistory(),
         ]);
-        
+
         if (profileRes.status === 'success') {
           setUser(profileRes.data.user);
           setFormData({
@@ -40,7 +44,7 @@ export default function ProfilePage() {
             profilePic: profileRes.data.user.profilePic || '',
           });
         }
-        
+
         if (bookingsRes.status === 'success') {
           setBookings(bookingsRes.data.bookings);
         }
@@ -68,7 +72,9 @@ export default function ProfilePage() {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -76,7 +82,7 @@ export default function ProfilePage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsUpdating(true);
-    
+
     // Omit optional fields if they are empty
     const payload: Partial<typeof formData> = { name: formData.name };
     if (formData.phone) payload.phone = formData.phone;
@@ -93,8 +99,11 @@ export default function ProfilePage() {
       } else {
         toast.error(res.message || 'Failed to update profile');
       }
-    } catch (error: any) {
-      toast.error(error.response?.data?.message || 'Error updating profile');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      const errorMessage =
+        err.response?.data?.message || 'Error updating profile';
+      toast.error(errorMessage);
     } finally {
       setIsUpdating(false);
     }
@@ -112,7 +121,11 @@ export default function ProfilePage() {
           <div className="profile-header__info">
             <div className="profile-avatar overflow-hidden">
               {user.profilePic ? (
-                <img src={user.profilePic} alt={user.name} className="w-full h-full object-cover" />
+                <img
+                  src={user.profilePic}
+                  alt={user.name}
+                  className="w-full h-full object-cover"
+                />
               ) : (
                 user.name.charAt(0).toUpperCase()
               )}
@@ -134,13 +147,16 @@ export default function ProfilePage() {
         <div className="profile-grid">
           <section className="profile-card">
             <h2 className="profile-card__title">
-              <span>👤</span> {isEditing ? 'Edit Profile Information' : 'Account Details'}
+              <span>👤</span>{' '}
+              {isEditing ? 'Edit Profile Information' : 'Account Details'}
             </h2>
 
             {isEditing ? (
               <form className="profile-form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="name" className="form-label">Full Name</label>
+                  <label htmlFor="name" className="form-label">
+                    Full Name
+                  </label>
                   <input
                     type="text"
                     id="name"
@@ -152,7 +168,9 @@ export default function ProfilePage() {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="phone" className="form-label">Phone Number</label>
+                  <label htmlFor="phone" className="form-label">
+                    Phone Number
+                  </label>
                   <input
                     type="tel"
                     id="phone"
@@ -164,7 +182,9 @@ export default function ProfilePage() {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="address" className="form-label">Address</label>
+                  <label htmlFor="address" className="form-label">
+                    Address
+                  </label>
                   <input
                     type="text"
                     id="address"
@@ -175,7 +195,9 @@ export default function ProfilePage() {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="profilePic" className="form-label">Profile Image URL</label>
+                  <label htmlFor="profilePic" className="form-label">
+                    Profile Image URL
+                  </label>
                   <input
                     type="url"
                     id="profilePic"
@@ -187,7 +209,9 @@ export default function ProfilePage() {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="bio" className="form-label">Biography</label>
+                  <label htmlFor="bio" className="form-label">
+                    Biography
+                  </label>
                   <textarea
                     id="bio"
                     name="bio"
@@ -200,7 +224,11 @@ export default function ProfilePage() {
                 </div>
 
                 <div className="form-actions">
-                  <button type="submit" className="btn btn--primary" disabled={isUpdating}>
+                  <button
+                    type="submit"
+                    className="btn btn--primary"
+                    disabled={isUpdating}
+                  >
                     {isUpdating ? 'Saving...' : 'Save Changes'}
                   </button>
                   <button
@@ -221,15 +249,21 @@ export default function ProfilePage() {
                 </div>
                 <div className="detail-item">
                   <span className="detail-label">Phone</span>
-                  <span className="detail-value">{user.phone || 'Not provided'}</span>
+                  <span className="detail-value">
+                    {user.phone || 'Not provided'}
+                  </span>
                 </div>
                 <div className="detail-item">
                   <span className="detail-label">Address</span>
-                  <span className="detail-value">{user.address || 'Not provided'}</span>
+                  <span className="detail-value">
+                    {user.address || 'Not provided'}
+                  </span>
                 </div>
                 <div className="detail-item">
                   <span className="detail-label">Bio</span>
-                  <span className="detail-value">{user.bio || 'No bio yet.'}</span>
+                  <span className="detail-value">
+                    {user.bio || 'No bio yet.'}
+                  </span>
                 </div>
                 <div className="detail-item">
                   <span className="detail-label">Account Role</span>
@@ -258,9 +292,13 @@ export default function ProfilePage() {
                 <div className="empty-state">
                   <div className="empty-state__icon">📭</div>
                   <p className="empty-state__text">
-                    Your booking history is currently empty. Start exploring rooms to make your first reservation!
+                    Your booking history is currently empty. Start exploring
+                    rooms to make your first reservation!
                   </p>
-                  <button className="btn btn--secondary btn--sm" style={{ marginTop: '12px' }}>
+                  <button
+                    className="btn btn--secondary btn--sm"
+                    style={{ marginTop: '12px' }}
+                  >
                     Browse Rooms
                   </button>
                 </div>
