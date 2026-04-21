@@ -28,6 +28,18 @@ model User {
   bookings      Booking[]
 }
 
+model Room {
+  id         String     @id @default(uuid())
+  roomNumber String     @unique
+  type       RoomType
+  price      Float
+  status     RoomStatus @default(AVAILABLE)
+  capacity   Int
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  bookings   Booking[]
+}
+
 model Booking {
   id         String        @id @default(uuid())
   checkIn    DateTime
@@ -35,7 +47,9 @@ model Booking {
   totalPrice Float
   status     BookingStatus @default(PENDING)
   userId     String
+  roomId     String
   user       User          @relation(fields: [userId], references: [id])
+  room       Room          @relation(fields: [roomId], references: [id])
   createdAt  DateTime      @default(now())
   updatedAt  DateTime      @updatedAt
 }
@@ -44,6 +58,19 @@ enum Role {
   CUSTOMER
   ADMIN
   STAFF
+}
+
+enum RoomType {
+  SINGLE
+  DOUBLE
+  DELUXE
+  SUITE
+}
+
+enum RoomStatus {
+  AVAILABLE
+  BOOKED
+  MAINTENANCE
 }
 
 enum BookingStatus {
