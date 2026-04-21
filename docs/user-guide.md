@@ -1,6 +1,6 @@
 # User Guide
 
-This guide describes how to use the Hotel Management System (v2.0.0) based on different user roles.
+This guide describes how to use the Hotel Management System (v3.0.0) based on different user roles.
 
 ## 🔑 Accessing the System
 

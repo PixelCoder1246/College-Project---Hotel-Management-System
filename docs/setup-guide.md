@@ -1,6 +1,6 @@
 # Setup & Installation Guide
 
-This guide provides step-by-step instructions for setting up the Hotel Management System (v2.0.0) on your local machine.
+This guide provides step-by-step instructions for setting up the Hotel Management System (v3.0.0) on your local machine.
 
 ## 📋 Prerequisites
 

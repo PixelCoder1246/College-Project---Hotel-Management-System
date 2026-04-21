@@ -1,8 +1,8 @@
-# Hotel Management System (v2.0.0)
+# Hotel Management System (v3.0.0)
 
 A modern, full-stack hospitality management platform built for speed, security, and premium user experience.
 
-## 🚀 Version 2.0.0 - Room Management & Backend Phase 2 Update
+## 🚀 Version 3.0.0 - Advanced Reservation Engine & Overlap Protection
 
 The project has reached a major milestone with a production-ready authentication system and a high-end UI design system.
 

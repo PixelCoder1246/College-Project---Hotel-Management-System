@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0] - 2026-04-21
+### Added
+- **Phase 3 Backend: Reservation Engine & Overlap Logic**:
+  - Precision date-overlap checking to prevent double bookings.
+  - Automatic `totalPrice` calculation based on nightly rates.
+  - Comprehensive Booking APIs: availability checks, creation, cancellation, and modification.
+  - Strict date validation to ensure data integrity.
+- **Global Updates**:
+  - Bumped project version to `3.0.0` across all packages and documentation.
+
 ## [2.0.0] - 2026-04-21
 ### Added
 - **Phase 2 Backend: Room Management System**:
