@@ -1,10 +1,10 @@
 import api from '../api/axios';
 import {
-  CreateRoomRequest,
-  RoomFilters,
-  RoomsResponse,
-  SingleRoomResponse,
-  UpdateRoomRequest,
+  type CreateRoomRequest,
+  type RoomFilters,
+  type RoomsResponse,
+  type SingleRoomResponse,
+  type UpdateRoomRequest,
 } from '../types/room.types';
 
 export const getAllRooms = async (

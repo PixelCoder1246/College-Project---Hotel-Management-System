@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.2.0] - 2026-04-21
+### Added
+- **Frontend: Admin Booking Management**:
+  - New `AdminBookingsPage` for staff/admins to view all reservations system-wide.
+  - Confirm/Cancel actions on PENDING bookings directly from the dashboard.
+  - `GET /api/bookings` endpoint (ADMIN/STAFF only) with optional filters.
+  - Restored `getBookingById` and added `getAllBookings` to booking service, controller, and routes.
+  - Dashboard module grid redesigned: separated "Room Booking" (customer) from "Manage Rooms" and "Manage Bookings" (staff/admin).
+### Fixed
+- `ReferenceError: getAllBookings is not defined` in `booking.routes.js` (missing import).
+- Cleaned up and deduplicated `booking.service.ts` methods.
+
+## [3.1.0] - 2026-04-21
+### Added
+- **Phase 3 Frontend: Reservation System & Search**:
+  - Premium Room Search interface with real-time capacity and type filtering.
+  - Interactive booking confirmation modal with automatic price calculations.
+  - "My Bookings" dashboard module for personal reservation management.
+  - **Admin Booking Management**: Dedicated dashboard for staff to confirm/cancel guest reservations.
+  - Seamless integration with backend reservation overlap protection logic.
+  - Standardized project version to `3.1.0` and cleaned up linting across the stack.
+
 ## [3.0.0] - 2026-04-21
 ### Added
 - **Phase 3 Backend: Reservation Engine & Overlap Logic**:

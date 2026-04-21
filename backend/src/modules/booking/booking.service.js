@@ -123,10 +123,34 @@ const getBookingById = async (bookingId) => {
   });
 };
 
+const getAllBookings = async (filters = {}) => {
+  const { status, userId, roomId } = filters;
+  const where = {};
+  if (status) where.status = status;
+  if (userId) where.userId = userId;
+  if (roomId) where.roomId = roomId;
+
+  return await prisma.booking.findMany({
+    where,
+    include: {
+      room: true,
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true
+        }
+      }
+    },
+    orderBy: { createdAt: 'desc' }
+  });
+};
+
 module.exports = {
   checkAvailability,
   createBooking,
   updateBooking,
   cancelBooking,
-  getBookingById
+  getBookingById,
+  getAllBookings
 };

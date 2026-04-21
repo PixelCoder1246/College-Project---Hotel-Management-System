@@ -9,7 +9,6 @@ const { authenticate } = require('../../middleware/authenticate');
 
 const router = express.Router();
 
-// All routes here require authentication
 router.use(authenticate);
 
 router.get('/profile', getProfile);

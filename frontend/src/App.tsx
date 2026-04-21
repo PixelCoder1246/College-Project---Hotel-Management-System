@@ -7,6 +7,9 @@ import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
 import ProfilePage from './pages/ProfilePage';
 import RoomManagementPage from './pages/RoomManagementPage';
+import RoomsPage from './pages/RoomsPage';
+import MyBookingsPage from './pages/MyBookingsPage';
+import AdminBookingsPage from './pages/AdminBookingsPage';
 
 export default function App() {
   return (
@@ -21,6 +24,9 @@ export default function App() {
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/dashboard/rooms" element={<RoomManagementPage />} />
+            <Route path="/rooms" element={<RoomsPage />} />
+            <Route path="/my-bookings" element={<MyBookingsPage />} />
+            <Route path="/dashboard/bookings" element={<AdminBookingsPage />} />
           </Route>
 
           <Route path="*" element={<Navigate to="/" replace />} />
