@@ -22,7 +22,12 @@ const updateProfile = async (req, res) => {
 
   try {
     const updatedUser = await userService.updateProfile(req.user.id, req.body);
-    return success(res, { user: updatedUser }, 200, 'Profile updated successfully');
+    return success(
+      res,
+      { user: updatedUser },
+      200,
+      'Profile updated successfully'
+    );
   } catch (err) {
     return error(res, err.message, 500);
   }
@@ -31,7 +36,12 @@ const updateProfile = async (req, res) => {
 const getBookingHistory = async (req, res) => {
   try {
     const bookings = await userService.getBookingHistory(req.user.id);
-    return success(res, { bookings }, 200, 'Booking history fetched successfully');
+    return success(
+      res,
+      { bookings },
+      200,
+      'Booking history fetched successfully'
+    );
   } catch (err) {
     return error(res, err.message, 500);
   }

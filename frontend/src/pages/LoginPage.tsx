@@ -32,15 +32,12 @@ export default function LoginPage() {
       const res = await loginUser({ email, password, trustedToken });
 
       if (!res.data.requiresOtp && res.data.token && res.data.user) {
-
         login(res.data.token, res.data.user, res.data.trustedToken);
         toast.success(`Welcome back, ${res.data.user.name}!`);
         navigate('/dashboard');
       } else {
         setStage('otp');
-        toast.success(
-          'OTP sent! Please check your email inbox.'
-        );
+        toast.success('OTP sent! Please check your email inbox.');
       }
     } catch (err: unknown) {
       const msg =
@@ -90,7 +87,6 @@ export default function LoginPage() {
         </Link>
 
         <div className="auth-card">
-
           <div
             className="auth-stages"
             role="progressbar"

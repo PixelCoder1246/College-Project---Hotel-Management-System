@@ -46,7 +46,6 @@ export default function LandingPage() {
     <div className="landing">
       <Navbar />
 
-
       <section className="hero" aria-labelledby="hero-heading">
         <div className="hero__bg">
           <div className="hero__orb hero__orb--1" />
@@ -103,7 +102,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-
       <section
         className="features"
         id="features"
@@ -133,7 +131,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-
       <section className="cta-banner" aria-labelledby="cta-heading">
         <div className="cta-banner__content">
           <h2 id="cta-heading" className="cta-banner__title">
@@ -151,7 +148,6 @@ export default function LandingPage() {
           </Link>
         </div>
       </section>
-
 
       <footer className="footer" role="contentinfo">
         <div className="footer__content">

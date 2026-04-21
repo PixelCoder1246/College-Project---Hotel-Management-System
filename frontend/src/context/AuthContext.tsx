@@ -20,15 +20,21 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState<User | null>(() => {
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+  const [token, setToken] = useState<string | null>(() =>
+    localStorage.getItem('token')
+  );
+  const [isLoading, setIsLoading] = useState(
+    () => !!localStorage.getItem('token')
+  );
 
   useEffect(() => {
     let isMounted = true;
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
-      setToken(storedToken);
       getMe()
         .then((res) => {
           if (isMounted) setUser(res.data.user);
@@ -43,8 +49,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         .finally(() => {
           if (isMounted) setIsLoading(false);
         });
-    } else {
-      setIsLoading(false);
     }
     return () => {
       isMounted = false;

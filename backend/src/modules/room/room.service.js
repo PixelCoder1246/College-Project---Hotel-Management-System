@@ -39,7 +39,7 @@ const getAllRooms = async (filters = {}) => {
   if (type) where.type = type;
   if (status) where.status = status;
   if (capacity) where.capacity = { gte: parseInt(capacity) };
-  
+
   if (minPrice || maxPrice) {
     where.price = {};
     if (minPrice) where.price.gte = parseFloat(minPrice);
