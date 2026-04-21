@@ -5,6 +5,7 @@ const rateLimit = require('express-rate-limit');
 
 const authRoutes = require('./modules/auth/auth.routes');
 const userRoutes = require('./modules/user/user.routes');
+const roomRoutes = require('./modules/room/room.routes');
 
 const app = express();
 
@@ -38,12 +39,13 @@ app.get('/', (_req, res) => {
   res.status(200).json({
     status: 'success',
     message: 'Hotel Management System API',
-    version: '0.1.3',
+    version: '2.0.0',
   });
 });
 
 app.use('/api/auth', authLimiter, authRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/rooms', roomRoutes);
 
 app.use((req, res) => {
   res.status(404).json({

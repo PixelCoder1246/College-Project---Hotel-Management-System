@@ -1,6 +1,6 @@
 # Database Schema Documentation
 
-This document describes the database schema used by the Hotel Management System (v0.1.3).
+This document describes the database schema used by the Hotel Management System (v2.0.0).
 
 ## 🗄️ Database Provider
 - **Type**: PostgreSQL (via Supabase)
@@ -30,7 +30,21 @@ Stores registration and authentication details for all users (Customers, Staff, 
 | `createdAt` | `DateTime` | `@default(now())` | Record creation timestamp. |
 | `updatedAt` | `DateTime` | `@updatedAt` | Record last update timestamp. |
 
-### 2. Booking
+### 2. Room
+Stores information about the rooms available in the hotel.
+
+| Field | Type | Attributes | Description |
+| :--- | :--- | :--- | :--- |
+| `id` | `String` | `@id`, `default(uuid())` | Primary Key. Global unique identifier. |
+| `roomNumber` | `String` | `@unique` | Identifying number/name of the room. |
+| `type` | `RoomType` | | Category of the room (e.g., DELUXE). |
+| `price` | `Float` | | Price per night. |
+| `status` | `RoomStatus` | `default(AVAILABLE)` | Current availability status. |
+| `capacity` | `Int` | | Maximum number of guests. |
+| `createdAt` | `DateTime` | `@default(now())` | Record creation timestamp. |
+| `updatedAt` | `DateTime` | `@updatedAt` | Record last update timestamp. |
+
+### 3. Booking
 Stores reservations made by users.
 
 | Field | Type | Attributes | Description |
@@ -41,6 +55,7 @@ Stores reservations made by users.
 | `totalPrice` | `Float` | | Total cost of the stay. |
 | `status` | `BookingStatus` | `default(PENDING)` | Current status of the reservation. |
 | `userId` | `String` | | Foreign Key to the User model. |
+| `roomId` | `String` | | Foreign Key to the Room model. |
 | `createdAt` | `DateTime` | `@default(now())` | Record creation timestamp. |
 | `updatedAt` | `DateTime` | `@updatedAt` | Record last update timestamp. |
 
@@ -54,6 +69,21 @@ Defines the access level of a user.
 - `CUSTOMER`: Standard guest user. Can book rooms and view own payments.
 - `STAFF`: Hotel employee. Can manage bookings, view analytics, and process payments.
 - `ADMIN`: Full system access. Can manage staff and view global reports.
+
+### RoomType
+Defines the category of a room.
+
+- `SINGLE`: Room for one person.
+- `DOUBLE`: Room for two people.
+- `DELUXE`: Premium room with better amenities.
+- `SUITE`: Luxury multi-room accommodation.
+
+### RoomStatus
+Defines the current availability of a room.
+
+- `AVAILABLE`: Ready for booking.
+- `BOOKED`: Currently occupied or reserved.
+- `MAINTENANCE`: Under repair or cleaning.
 
 ### BookingStatus
 Defines the current state of a reservation.
@@ -70,6 +100,7 @@ Defines the current state of a reservation.
 ```mermaid
 erDiagram
     USER ||--o{ BOOKING : makes
+    ROOM ||--o{ BOOKING : assigned_to
     USER {
         string id PK
         string name
@@ -87,6 +118,17 @@ erDiagram
         datetime updatedAt
     }
 
+    ROOM {
+        string id PK
+        string roomNumber UK
+        ROOM_TYPE type
+        float price
+        ROOM_STATUS status
+        int capacity
+        datetime createdAt
+        datetime updatedAt
+    }
+
     BOOKING {
         string id PK
         datetime checkIn
@@ -94,6 +136,7 @@ erDiagram
         float totalPrice
         BOOKING_STATUS status
         string userId FK
+        string roomId FK
         datetime createdAt
         datetime updatedAt
     }

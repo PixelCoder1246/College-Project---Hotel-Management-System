@@ -1,6 +1,17 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+
+## [2.0.0] - 2026-04-21
+### Added
+- **Phase 2 Backend: Room Management System**:
+  - Full CRUD implementation for `Room` model.
+  - Enhanced room filtering (type, status, price range, capacity).
+  - Admin/Staff role-based authorization for room management.
+  - Automatic Prisma client synchronization.
+- **Global Updates**:
+  - Bumped project version to `2.0.0` across all packages and documentation.
+
 ## [0.1.3] - 2026-04-20
 ### Added
 - **Phase 1 UI Implementation**:

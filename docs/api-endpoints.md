@@ -1,6 +1,6 @@
 # API Endpoints Documentation
 
-This document lists all available REST API endpoints for the Hotel Management System (v0.1.3).
+This document lists all available REST API endpoints for the Hotel Management System (v2.0.0).
 
 ## 🌍 Base URL
 `http://localhost:3000/api`
@@ -197,6 +197,125 @@ Fetches the list of bookings made by the authenticated user.
         ]
       },
       "message": "Booking history fetched successfully"
+    }
+    ```
+
+---
+
+## 🏨 Room Endpoints
+
+All room-related endpoints are prefixed with `/rooms`.
+
+### 1. Get All Rooms
+Fetches a list of all rooms with optional filtering.
+
+- **URL**: `/rooms`
+- **Method**: `GET`
+- **Auth Required**: No
+- **Query Parameters**:
+  - `type`: SINGLE, DOUBLE, DELUXE, SUITE
+  - `status`: AVAILABLE, BOOKED, MAINTENANCE
+  - `minPrice`: Minimum price per night.
+  - `maxPrice`: Maximum price per night.
+  - `capacity`: Minimum guest capacity.
+- **Success Response**:
+  - **Code**: `200 OK`
+  - **Content**:
+    ```json
+    {
+      "status": "success",
+      "data": {
+        "rooms": [
+          { "id": "...", "roomNumber": "101", "type": "DELUXE", "price": 150.0, "status": "AVAILABLE", "capacity": 2 }
+        ]
+      },
+      "message": "Rooms fetched successfully"
+    }
+    ```
+
+### 2. Get Room Details
+Fetches details of a specific room.
+
+- **URL**: `/rooms/:id`
+- **Method**: `GET`
+- **Auth Required**: No
+- **Success Response**:
+  - **Code**: `200 OK`
+  - **Content**:
+    ```json
+    {
+      "status": "success",
+      "data": {
+        "room": { ... }
+      },
+      "message": "Room fetched successfully"
+    }
+    ```
+
+### 3. Add Room
+Adds a new room to the system.
+
+- **URL**: `/rooms`
+- **Method**: `POST`
+- **Auth Required**: Yes (Admin or Staff)
+- **Request Body**:
+  ```json
+  {
+    "roomNumber": "101",
+    "type": "DELUXE",
+    "price": 150.0,
+    "capacity": 2
+  }
+  ```
+- **Success Response**:
+  - **Code**: `201 Created`
+  - **Content**:
+    ```json
+    {
+      "status": "success",
+      "data": { "room": { ... } },
+      "message": "Room added successfully"
+    }
+    ```
+
+### 4. Update Room
+Updates an existing room's details.
+
+- **URL**: `/rooms/:id`
+- **Method**: `PATCH`
+- **Auth Required**: Yes (Admin or Staff)
+- **Request Body**: (Any combination of)
+  ```json
+  {
+    "price": 160.0,
+    "status": "MAINTENANCE"
+  }
+  ```
+- **Success Response**:
+  - **Code**: `200 OK`
+  - **Content**:
+    ```json
+    {
+      "status": "success",
+      "data": { "room": { ... } },
+      "message": "Room updated successfully"
+    }
+    ```
+
+### 5. Delete Room
+Removes a room from the system.
+
+- **URL**: `/rooms/:id`
+- **Method**: `DELETE`
+- **Auth Required**: Yes (Admin or Staff)
+- **Success Response**:
+  - **Code**: `200 OK`
+  - **Content**:
+    ```json
+    {
+      "status": "success",
+      "data": null,
+      "message": "Room deleted successfully"
     }
     ```
 
