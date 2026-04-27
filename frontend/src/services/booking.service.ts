@@ -2,6 +2,7 @@ import api from '../api/axios';
 import {
   type AvailabilityResponse,
   type BookingResponse,
+  type BookingsResponse,
   type CheckAvailabilityRequest,
   type CreateBookingRequest,
   type UpdateBookingRequest,
@@ -15,7 +16,9 @@ export const checkAvailability = async (
     checkIn: data.checkIn,
     checkOut: data.checkOut,
   });
-  const res = await api.get(`/api/bookings/check-availability?${params.toString()}`);
+  const res = await api.get(
+    `/api/bookings/check-availability?${params.toString()}`
+  );
   return res.data;
 };
 
@@ -34,7 +37,11 @@ export const updateBooking = async (
   return res.data;
 };
 
-export const getAllBookings = async (filters?: { status?: string; userId?: string; roomId?: string }): Promise<{ data: { bookings: any[] } }> => {
+export const getAllBookings = async (filters?: {
+  status?: string;
+  userId?: string;
+  roomId?: string;
+}): Promise<BookingsResponse> => {
   const res = await api.get('/api/bookings', { params: filters });
   return res.data;
 };

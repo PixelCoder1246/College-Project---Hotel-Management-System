@@ -10,6 +10,7 @@ import RoomManagementPage from './pages/RoomManagementPage';
 import RoomsPage from './pages/RoomsPage';
 import MyBookingsPage from './pages/MyBookingsPage';
 import AdminBookingsPage from './pages/AdminBookingsPage';
+import PaymentPage from './pages/PaymentPage';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="/dashboard/rooms" element={<RoomManagementPage />} />
             <Route path="/rooms" element={<RoomsPage />} />
             <Route path="/my-bookings" element={<MyBookingsPage />} />
+            <Route path="/payment/:bookingId" element={<PaymentPage />} />
             <Route path="/dashboard/bookings" element={<AdminBookingsPage />} />
           </Route>
 
