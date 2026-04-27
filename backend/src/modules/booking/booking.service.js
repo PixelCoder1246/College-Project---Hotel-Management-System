@@ -49,15 +49,25 @@ const createBooking = async (bookingData) => {
   const nights = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
   const totalPrice = room.price * nights;
 
-  return await prisma.booking.create({
-    data: {
-      userId,
-      roomId,
-      checkIn: start,
-      checkOut: end,
-      totalPrice,
-      status: 'PENDING',
-    },
+  return await prisma.$transaction(async (tx) => {
+    const booking = await tx.booking.create({
+      data: {
+        userId,
+        roomId,
+        checkIn: start,
+        checkOut: end,
+        totalPrice,
+        status: 'PENDING',
+      },
+    });
+
+    // Mark room as BOOKED
+    await tx.room.update({
+      where: { id: roomId },
+      data: { status: 'BOOKED' },
+    });
+
+    return booking;
   });
 };
 
@@ -102,9 +112,30 @@ const updateBooking = async (bookingId, updateData) => {
 };
 
 const cancelBooking = async (bookingId) => {
-  return await prisma.booking.update({
-    where: { id: bookingId },
-    data: { status: 'CANCELLED' },
+  const booking = await prisma.booking.findUnique({ where: { id: bookingId } });
+  if (!booking) throw new Error('Booking not found');
+
+  return await prisma.$transaction(async (tx) => {
+    await tx.booking.update({
+      where: { id: bookingId },
+      data: { status: 'CANCELLED' },
+    });
+
+    // Check if any other active bookings exist for this room
+    const otherActive = await tx.booking.findFirst({
+      where: {
+        roomId: booking.roomId,
+        id: { not: bookingId },
+        status: { in: ['PENDING', 'CONFIRMED'] },
+      },
+    });
+
+    if (!otherActive) {
+      await tx.room.update({
+        where: { id: booking.roomId },
+        data: { status: 'AVAILABLE' },
+      });
+    }
   });
 };
 

@@ -1,8 +1,8 @@
-# Hotel Management System (v4.0.0)
+# Hotel Management System (v4.1.0)
 
 A modern, full-stack hospitality management platform built for speed, security, and premium user experience.
 
-## 🚀 Version 4.0.0 - Payment Integration & Invoicing
+## 🚀 Version 4.1.0 - Payment Integration & Invoicing
 
 The project has reached a major milestone with a production-ready authentication system and a high-end UI design system.
 

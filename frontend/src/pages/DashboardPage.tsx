@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
 import '../styles/dashboard.css';
@@ -6,68 +6,79 @@ import '../styles/dashboard.css';
 const ROLE_CONFIG = {
   ADMIN: {
     label: 'Administrator',
-    color: '#ef4444',
+    color: '#c9a84c',
     icon: '👑',
-    description: 'Full system access and control',
+    description: 'Full system access — manage rooms, bookings, and operations.',
   },
   STAFF: {
     label: 'Staff Member',
     color: '#3b82f6',
     icon: '👷',
-    description: 'Hotel operations access',
+    description: 'Hotel operations — manage rooms and guest reservations.',
   },
   CUSTOMER: {
-    label: 'Customer',
+    label: 'Guest',
     color: '#10b981',
-    icon: '🧑',
-    description: 'Guest portal access',
+    icon: '🧳',
+    description: 'Welcome back! Browse rooms and manage your reservations.',
   },
 } as const;
 
-const MODULES = [
+type ModuleKey =
+  | 'Room Booking'
+  | 'My Bookings'
+  | 'Manage Rooms'
+  | 'Manage Bookings'
+  | 'Profile';
+
+const MODULES: {
+  icon: string;
+  title: ModuleKey;
+  desc: string;
+  roles: ('ADMIN' | 'STAFF' | 'CUSTOMER')[];
+}[] = [
+  // Customer-only
   {
     icon: '🏨',
     title: 'Room Booking',
-    desc: 'Browse and book available rooms',
-    roles: ['ADMIN', 'STAFF', 'CUSTOMER'],
+    desc: 'Browse available rooms and make a reservation.',
+    roles: ['CUSTOMER'],
   },
   {
     icon: '📅',
     title: 'My Bookings',
-    desc: 'View and manage your reservations',
-    roles: ['ADMIN', 'STAFF', 'CUSTOMER'],
+    desc: 'View and manage your personal reservations.',
+    roles: ['CUSTOMER'],
   },
+  // Admin / Staff
   {
     icon: '🛏️',
     title: 'Manage Rooms',
-    desc: 'Add, edit, or remove hotel rooms',
+    desc: 'Add, edit, or remove hotel rooms and update availability.',
     roles: ['ADMIN', 'STAFF'],
   },
   {
     icon: '📝',
     title: 'Manage Bookings',
-    desc: 'Confirm or cancel guest reservations',
+    desc: 'Review, confirm or cancel all guest reservations.',
     roles: ['ADMIN', 'STAFF'],
   },
+  // Shared
   {
-    icon: '💳',
-    title: 'Payments',
-    desc: 'Process and track all payment transactions',
+    icon: '👤',
+    title: 'Profile',
+    desc: 'Update your personal information and preferences.',
     roles: ['ADMIN', 'STAFF', 'CUSTOMER'],
   },
-  {
-    icon: '👥',
-    title: 'Staff Management',
-    desc: 'Manage your team, schedules, and shifts',
-    roles: ['ADMIN'],
-  },
-  {
-    icon: '📊',
-    title: 'Reports & Analytics',
-    desc: 'Real-time performance dashboards and insights',
-    roles: ['ADMIN', 'STAFF'],
-  },
 ];
+
+const ROUTE_MAP: Record<ModuleKey, string> = {
+  'Room Booking': '/rooms',
+  'My Bookings': '/my-bookings',
+  'Manage Rooms': '/dashboard/rooms',
+  'Manage Bookings': '/dashboard/bookings',
+  Profile: '/profile',
+};
 
 export default function DashboardPage() {
   const { user, logout } = useAuth();
@@ -75,7 +86,7 @@ export default function DashboardPage() {
 
   const handleLogout = () => {
     logout();
-    toast.success('You have been logged out.');
+    toast.success('Signed out successfully.');
     navigate('/login');
   };
 
@@ -86,11 +97,12 @@ export default function DashboardPage() {
 
   return (
     <div className="dashboard">
+      {/* Header */}
       <header className="dashboard-header">
-        <div className="dashboard-header__brand">
-          <span className="dashboard-header__icon">⚜</span>
-          <span className="dashboard-header__name">Hotel MS</span>
-        </div>
+        <Link to="/" className="dashboard-header__brand">
+          <div className="dashboard-header__brand-icon">⚜</div>
+          Royal Orchid
+        </Link>
 
         <div className="dashboard-header__actions">
           <div className="header-user">
@@ -107,10 +119,9 @@ export default function DashboardPage() {
               </span>
             </div>
           </div>
-
           <button
             id="logout-btn"
-            className="btn btn--outline-danger"
+            className="btn btn--outline-danger btn--sm"
             onClick={handleLogout}
           >
             Sign Out
@@ -119,6 +130,7 @@ export default function DashboardPage() {
       </header>
 
       <main className="dashboard-main">
+        {/* Welcome Banner */}
         <section className="welcome-banner" aria-labelledby="welcome-heading">
           <div className="welcome-banner__content">
             <div className="welcome-banner__icon" aria-hidden="true">
@@ -133,18 +145,19 @@ export default function DashboardPage() {
               </p>
             </div>
           </div>
-
           <div
             className="welcome-banner__badge"
             style={{
               background: `${roleConfig.color}18`,
-              borderColor: `${roleConfig.color}44`,
+              borderColor: `${roleConfig.color}40`,
+              color: roleConfig.color,
             }}
           >
-            <span style={{ color: roleConfig.color }}>{roleConfig.label}</span>
+            {roleConfig.label}
           </div>
         </section>
 
+        {/* Info Cards */}
         <section className="info-grid" aria-label="Account information">
           <div className="info-card">
             <div className="info-card__icon" aria-hidden="true">
@@ -155,13 +168,12 @@ export default function DashboardPage() {
               <span className="info-card__value">{user.email}</span>
             </div>
           </div>
-
           <div className="info-card">
             <div className="info-card__icon" aria-hidden="true">
               🔐
             </div>
             <div className="info-card__body">
-              <span className="info-card__label">Account Type</span>
+              <span className="info-card__label">Access Level</span>
               <span
                 className="info-card__value"
                 style={{ color: roleConfig.color }}
@@ -170,7 +182,6 @@ export default function DashboardPage() {
               </span>
             </div>
           </div>
-
           <div className="info-card">
             <div className="info-card__icon" aria-hidden="true">
               🆔
@@ -184,30 +195,23 @@ export default function DashboardPage() {
           </div>
         </section>
 
+        {/* Modules */}
         <section aria-labelledby="modules-heading">
-          <h2 id="modules-heading" className="section-title">
+          <div className="modules-section__title" id="modules-heading">
             Quick Access
-          </h2>
-
+          </div>
           <div className="modules-grid">
             {visibleModules.map((mod) => (
               <div
                 key={mod.title}
                 className="module-card"
-                onClick={() => {
-                  if (mod.title === 'Room Booking') {
-                    navigate('/rooms');
-                  } else if (mod.title === 'My Bookings') {
-                    navigate('/my-bookings');
-                  } else if (mod.title === 'Manage Rooms') {
-                    navigate('/dashboard/rooms');
-                  } else if (mod.title === 'Manage Bookings') {
-                    navigate('/dashboard/bookings');
-                  }
-                }}
-                style={{
-                  cursor: 'pointer',
-                }}
+                onClick={() => navigate(ROUTE_MAP[mod.title])}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) =>
+                  e.key === 'Enter' && navigate(ROUTE_MAP[mod.title])
+                }
+                aria-label={mod.title}
               >
                 <div className="module-card__icon" aria-hidden="true">
                   {mod.icon}
@@ -216,6 +220,7 @@ export default function DashboardPage() {
                   <h3 className="module-card__title">{mod.title}</h3>
                   <p className="module-card__desc">{mod.desc}</p>
                 </div>
+                <span className="module-card__arrow">→</span>
               </div>
             ))}
           </div>

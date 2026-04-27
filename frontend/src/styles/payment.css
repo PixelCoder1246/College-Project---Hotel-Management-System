@@ -1,0 +1,316 @@
+/* ── Payment Page ────────────────────────────────────── */
+.payment-page {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  padding: 2.5rem 2rem;
+}
+.payment-page__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 2rem;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .payment-page__inner { grid-template-columns: 1fr; }
+}
+
+/* ── Invoice Panel ───────────────────────────────────── */
+.invoice-panel {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+.invoice-header {
+  background: linear-gradient(135deg, rgba(201,168,76,0.1) 0%, rgba(201,168,76,0.03) 100%);
+  border-bottom: 1px solid var(--accent-border);
+  padding: 2rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.invoice-header__brand {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+.invoice-header__label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.invoice-header__number {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.invoice-header__date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+.invoice-body { padding: 2rem 2.5rem; }
+.invoice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 540px) {
+  .invoice-grid { grid-template-columns: 1fr; }
+}
+.invoice-section__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.invoice-section__name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+.invoice-section__text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.invoice-section__row {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+  color: var(--text-secondary);
+}
+.invoice-section__row strong { color: var(--text-primary); min-width: 80px; }
+
+/* Invoice Line Items */
+.invoice-table-wrap {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.invoice-table thead tr { background: rgba(255,255,255,0.03); }
+.invoice-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.invoice-table th:last-child { text-align: right; }
+.invoice-table td {
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-primary);
+}
+.invoice-table td:last-child { text-align: right; font-weight: 700; }
+
+/* Invoice Totals */
+.invoice-totals { margin-left: auto; max-width: 260px; }
+.invoice-total-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+.invoice-total-row:last-child {
+  border-bottom: none;
+  padding-top: 0.75rem;
+  margin-top: 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.invoice-total-row:last-child .invoice-total-value { color: var(--accent); font-size: 1.2rem; }
+.invoice-total-label { color: inherit; }
+.invoice-total-value { font-weight: 600; color: var(--text-primary); }
+
+/* ── Payment Panel ───────────────────────────────────── */
+.payment-panel {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  position: sticky;
+  top: 2.5rem;
+}
+.payment-panel__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+.payment-panel__subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1.75rem;
+}
+.payment-method-list { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.75rem; }
+.payment-method-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition);
+  background: transparent;
+}
+.payment-method-option:hover { border-color: var(--accent-border); background: var(--accent-muted); }
+.payment-method-option--selected {
+  border-color: var(--accent);
+  background: var(--accent-muted);
+}
+.payment-method-option__icon {
+  width: 40px; height: 40px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+}
+.payment-method-option__label {
+  font-size: 0.9rem; font-weight: 600; color: var(--text-primary); display: block;
+}
+.payment-method-option__desc {
+  font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 2px;
+}
+.payment-method-option__check {
+  margin-left: auto;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border-strong);
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+.payment-method-option--selected .payment-method-option__check {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(201,168,76,0.15);
+}
+
+/* ── Amount Due Summary ──────────────────────────────── */
+.payment-amount-box {
+  background: rgba(201,168,76,0.07);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.payment-amount-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.35rem; }
+.payment-amount-value { font-size: 2rem; font-weight: 800; color: var(--accent); line-height: 1; }
+
+/* ── Security Note ───────────────────────────────────── */
+.payment-secure-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 1rem;
+}
+
+/* ── Alert ───────────────────────────────────────────── */
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+.alert--error {
+  background: rgba(239,68,68,0.08);
+  border: 1px solid rgba(239,68,68,0.2);
+  color: #ef4444;
+}
+.alert--success {
+  background: rgba(16,185,129,0.08);
+  border: 1px solid rgba(16,185,129,0.2);
+  color: #10b981;
+}
+
+/* ── Success Screen ──────────────────────────────────── */
+.payment-success {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--bg-primary);
+}
+.payment-success__card {
+  background: var(--bg-glass);
+  border: 1px solid rgba(16,185,129,0.25);
+  border-radius: var(--radius-xl);
+  padding: 3.5rem 3rem;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(16,185,129,0.1);
+  animation: fadeInUp 0.5s ease;
+}
+.payment-success__icon {
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+.payment-success__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+.payment-success__text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+.payment-success__txn {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 1rem;
+  font-family: 'Courier New', monospace;
+}
+
+/* ── Loading / Spinner page ──────────────────────────── */
+.payment-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+}
