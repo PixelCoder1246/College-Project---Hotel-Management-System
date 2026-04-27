@@ -50,8 +50,21 @@ model Booking {
   roomId     String
   user       User          @relation(fields: [userId], references: [id])
   room       Room          @relation(fields: [roomId], references: [id])
+  payments   Payment[]
   createdAt  DateTime      @default(now())
   updatedAt  DateTime      @updatedAt
+}
+
+model Payment {
+  id            String        @id @default(uuid())
+  amount        Float
+  status        PaymentStatus @default(PENDING)
+  method        PaymentMethod
+  bookingId     String
+  booking       Booking       @relation(fields: [bookingId], references: [id])
+  transactionId String?       @unique
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }
 
 enum Role {
@@ -78,4 +91,19 @@ enum BookingStatus {
   CONFIRMED
   CANCELLED
   COMPLETED
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+enum PaymentMethod {
+  CREDIT_CARD
+  DEBIT_CARD
+  PAYPAL
+  CASH
+  UPI
 }

@@ -1,6 +1,11 @@
 const prisma = require('../../config/db');
 
-const checkAvailability = async (roomId, checkIn, checkOut, excludeBookingId = null) => {
+const checkAvailability = async (
+  roomId,
+  checkIn,
+  checkOut,
+  excludeBookingId = null
+) => {
   const start = new Date(checkIn);
   const end = new Date(checkOut);
 
@@ -11,25 +16,16 @@ const checkAvailability = async (roomId, checkIn, checkOut, excludeBookingId = n
       status: { in: ['CONFIRMED', 'PENDING'] },
       OR: [
         {
-          AND: [
-            { checkIn: { lte: start } },
-            { checkOut: { gt: start } }
-          ]
+          AND: [{ checkIn: { lte: start } }, { checkOut: { gt: start } }],
         },
         {
-          AND: [
-            { checkIn: { lt: end } },
-            { checkOut: { gte: end } }
-          ]
+          AND: [{ checkIn: { lt: end } }, { checkOut: { gte: end } }],
         },
         {
-          AND: [
-            { checkIn: { gte: start } },
-            { checkOut: { lte: end } }
-          ]
-        }
-      ]
-    }
+          AND: [{ checkIn: { gte: start } }, { checkOut: { lte: end } }],
+        },
+      ],
+    },
   });
 
   return !conflicts;
@@ -60,8 +56,8 @@ const createBooking = async (bookingData) => {
       checkIn: start,
       checkOut: end,
       totalPrice,
-      status: 'PENDING'
-    }
+      status: 'PENDING',
+    },
   });
 };
 
@@ -76,7 +72,12 @@ const updateBooking = async (bookingId, updateData) => {
   const roomId = updateData.roomId || booking.roomId;
 
   if (updateData.checkIn || updateData.checkOut || updateData.roomId) {
-    const isAvailable = await checkAvailability(roomId, checkIn, checkOut, bookingId);
+    const isAvailable = await checkAvailability(
+      roomId,
+      checkIn,
+      checkOut,
+      bookingId
+    );
     if (!isAvailable) {
       throw new Error('Room is not available for the selected dates');
     }
@@ -96,14 +97,14 @@ const updateBooking = async (bookingId, updateData) => {
 
   return await prisma.booking.update({
     where: { id: bookingId },
-    data
+    data,
   });
 };
 
 const cancelBooking = async (bookingId) => {
   return await prisma.booking.update({
     where: { id: bookingId },
-    data: { status: 'CANCELLED' }
+    data: { status: 'CANCELLED' },
   });
 };
 
@@ -116,10 +117,10 @@ const getBookingById = async (bookingId) => {
         select: {
           id: true,
           name: true,
-          email: true
-        }
-      }
-    }
+          email: true,
+        },
+      },
+    },
   });
 };
 
@@ -138,11 +139,11 @@ const getAllBookings = async (filters = {}) => {
         select: {
           id: true,
           name: true,
-          email: true
-        }
-      }
+          email: true,
+        },
+      },
     },
-    orderBy: { createdAt: 'desc' }
+    orderBy: { createdAt: 'desc' },
   });
 };
 
@@ -152,5 +153,5 @@ module.exports = {
   updateBooking,
   cancelBooking,
   getBookingById,
-  getAllBookings
+  getAllBookings,
 };

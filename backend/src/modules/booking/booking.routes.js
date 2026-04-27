@@ -5,12 +5,12 @@ const {
   updateBooking,
   cancelBooking,
   getBookingById,
-  getAllBookings
+  getAllBookings,
 } = require('./booking.controller');
 const {
   createBookingValidator,
   updateBookingValidator,
-  checkAvailabilityValidator
+  checkAvailabilityValidator,
 } = require('./booking.validator');
 const { authenticate } = require('../../middleware/authenticate');
 const { authorize } = require('../../middleware/authorize');
@@ -20,7 +20,11 @@ const router = express.Router();
 router.use(authenticate);
 
 router.get('/', authorize('ADMIN', 'STAFF'), getAllBookings);
-router.get('/check-availability', checkAvailabilityValidator, checkAvailability);
+router.get(
+  '/check-availability',
+  checkAvailabilityValidator,
+  checkAvailability
+);
 router.post('/', createBookingValidator, createBooking);
 router.get('/:id', getBookingById);
 router.patch('/:id', updateBookingValidator, updateBooking);
