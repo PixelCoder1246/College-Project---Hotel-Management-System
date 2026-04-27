@@ -10,8 +10,17 @@ const checkAvailability = async (req, res) => {
 
   try {
     const { roomId, checkIn, checkOut } = req.query;
-    const isAvailable = await bookingService.checkAvailability(roomId, checkIn, checkOut);
-    return success(res, { isAvailable }, 200, isAvailable ? 'Room is available' : 'Room is not available');
+    const isAvailable = await bookingService.checkAvailability(
+      roomId,
+      checkIn,
+      checkOut
+    );
+    return success(
+      res,
+      { isAvailable },
+      200,
+      isAvailable ? 'Room is available' : 'Room is not available'
+    );
   } catch (err) {
     return error(res, err.message, 500);
   }
@@ -26,12 +35,16 @@ const createBooking = async (req, res) => {
   try {
     const bookingData = {
       userId: req.user.id,
-      ...req.body
+      ...req.body,
     };
     const booking = await bookingService.createBooking(bookingData);
     return success(res, { booking }, 201, 'Booking created successfully');
   } catch (err) {
-    return error(res, err.message, err.message === 'Room is not available for the selected dates' ? 400 : 500);
+    return error(
+      res,
+      err.message,
+      err.message === 'Room is not available for the selected dates' ? 400 : 500
+    );
   }
 };
 
@@ -85,5 +98,5 @@ module.exports = {
   updateBooking,
   cancelBooking,
   getBookingById,
-  getAllBookings
+  getAllBookings,
 };

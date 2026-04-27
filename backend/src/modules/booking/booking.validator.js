@@ -6,7 +6,7 @@ const createBookingValidator = [
     .withMessage('Room ID is required')
     .isUUID()
     .withMessage('Invalid room ID'),
-  
+
   body('checkIn')
     .notEmpty()
     .withMessage('Check-in date is required')
@@ -18,7 +18,7 @@ const createBookingValidator = [
       }
       return true;
     }),
-  
+
   body('checkOut')
     .notEmpty()
     .withMessage('Check-out date is required')
@@ -43,7 +43,7 @@ const updateBookingValidator = [
       }
       return true;
     }),
-  
+
   body('checkOut')
     .optional()
     .isISO8601()
@@ -55,7 +55,7 @@ const updateBookingValidator = [
       }
       return true;
     }),
-  
+
   body('status')
     .optional()
     .isIn(['PENDING', 'CONFIRMED', 'CANCELLED', 'COMPLETED'])
@@ -68,13 +68,13 @@ const checkAvailabilityValidator = [
     .withMessage('Room ID is required')
     .isUUID()
     .withMessage('Invalid room ID'),
-  
+
   query('checkIn')
     .notEmpty()
     .withMessage('Check-in date is required')
     .isISO8601()
     .withMessage('Invalid check-in date format'),
-  
+
   query('checkOut')
     .notEmpty()
     .withMessage('Check-out date is required')

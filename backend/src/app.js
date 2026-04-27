@@ -7,6 +7,7 @@ const authRoutes = require('./modules/auth/auth.routes');
 const userRoutes = require('./modules/user/user.routes');
 const roomRoutes = require('./modules/room/room.routes');
 const bookingRoutes = require('./modules/booking/booking.routes');
+const paymentRoutes = require('./modules/payment/payment.routes');
 
 const app = express();
 
@@ -48,6 +49,7 @@ app.use('/api/auth', authLimiter, authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/rooms', roomRoutes);
 app.use('/api/bookings', bookingRoutes);
+app.use('/api/payments', paymentRoutes);
 
 app.use((req, res) => {
   res.status(404).json({
