@@ -41,7 +41,7 @@ app.get('/', (_req, res) => {
   res.status(200).json({
     status: 'success',
     message: 'Hotel Management System API',
-    version: '3.2.0',
+    version: '4.0.0',
   });
 });
 
