@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.0] - 2026-04-27
+### Added
+- **Phase 4 Backend: Payment Integration & Invoicing**:
+  - New `Payment` model with status and method tracking.
+  - Automated `Booking` status updates (CONFIRMED) upon successful payment.
+  - Secure endpoints for generating dynamic invoices with tax calculations.
+  - Mock payment processing logic with transaction ID generation.
+  - Project-wide linting and formatting synchronization.
+- **Global Updates**:
+  - Bumped project version to `4.0.0` across all packages, documentation, and APIs.
+
 ## [3.2.0] - 2026-04-21
 ### Added
 - **Frontend: Admin Booking Management**:
